@@ -59,11 +59,11 @@ RUN apt-get update && apt-get install -y \
 ##############
 
 # Install gh for authentication
-RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null \
-    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-    && apt update \
-    && apt install -y gh
+# RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+#     && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+#     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+#     && apt update \
+#     && apt install -y gh
 
 # Copy the token file into the container
 # COPY .auth/token_gh.txt /root/token_gh.txt
@@ -82,31 +82,30 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | t
 ##############
 
 # Install necessary packages and remove modemmanager
-RUN apt-get update && apt-get install -y \
-    gstreamer1.0-plugins-bad \
-    gstreamer1.0-libav \
-    gstreamer1.0-gl \
-    libfuse2 \
-    libxcb-xinerama0 \
-    libxkbcommon-x11-0 \
-    libxcb-cursor-dev \
-    && apt-get remove -y modemmanager \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y \
+#     gstreamer1.0-plugins-bad \
+#     gstreamer1.0-libav \
+#     gstreamer1.0-gl \
+#     libfuse2 \
+#     libxcb-xinerama0 \
+#     libxkbcommon-x11-0 \
+#     libxcb-cursor-dev \
+#     && apt-get remove -y modemmanager \
+#     && apt-get clean \
+#     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies required to run AppImages (adjust as needed)
-RUN apt-get update && apt-get install -y \
-    libfuse2 \
-    fuse \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y \
+#     libfuse2 \
+#     fuse \
+#     wget \
+#     && rm -rf /var/lib/apt/lists/*
 
 # Download the AppImage
-#RUN wget https://d176tv9ibo4jno.cloudfront.net/latest/QGroundControl.AppImage -O QGroundControl.AppImage
-RUN wget https://github.com/mavlink/qgroundcontrol/releases/download/v5.0.6/QGroundControl-x86_64.AppImage -O QGroundControl.AppImage
+# RUN wget https://github.com/mavlink/qgroundcontrol/releases/download/v5.0.6/QGroundControl-x86_64.AppImage -O QGroundControl.AppImage
 
-# Make it executable
-RUN chmod +x QGroundControl.AppImage
+# # Make it executable
+# RUN chmod +x QGroundControl.AppImage
 
 
 ##############
