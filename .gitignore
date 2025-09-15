@@ -169,7 +169,7 @@ ws_ros2/log/
 log/
 #data/
 
-*/__pycache__
+*/__pycache__/*
 
 # Authentication files
 .auth/
