@@ -1,0 +1,98 @@
+<?xml  version="1.0" ?>
+<sdf version="1.5">
+
+ <model name='aruco_box'>
+      <static>false</static>
+      <pose>0 0 0.03 0 0 3.141592654</pose>
+      <!-- <pose>0 0 0.1 0 -0 3.141592654</pose> -->
+      <link name='base_link'>
+        <inertial>
+          <mass>1.6868</mass>
+          <inertia>
+            <ixx>0.011747367</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.015939207</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.0210</izz>
+          </inertia>
+          <pose>0 0 0 0 0 3.141592654</pose>
+          <!-- <pose>0 0 0.1 0 -0 3.141592654</pose> -->
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.06</size>
+              <!-- <size>0.001 0.001 0.001</size> -->
+            </box>
+          </geometry>
+          <!-- <pose>0 0 -0.03 0 0 0</pose> -->
+          <surface>
+            <contact>
+              <ode/>
+              <collide_bitmask>0x01</collide_bitmask>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <!-- <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.01 0.01</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision> -->
+        <visual name='aruco_box_mesh'>
+          <geometry>
+            <mesh>
+                <uri>model://aruco_box/model.dae</uri>
+                <scale>0.15 0.15 0.03</scale>
+                <!--<scale>0.1 0.1 0.1</scale> --> <!-- Note box has side lenth 2m so scale based on that--> <!-- Remember to change t_MARKER_REL_LOAD in load node - swarm load carry -->
+                <!-- Also change worlds/default.sdf spawn location of box & tether-box joints. Changing this will change where the tethers connect to on the load-->
+            </mesh>
+          </geometry>
+          <!-- <material>
+            <ambient>0.2 0.2 0.2 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material> -->
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+
+      <!-- Publish ground truth box position -->
+      <!-- Note that the load is interpreted as a static entity as it is moved by the drones through attachements-->
+      <plugin filename="libignition-gazebo-pose-publisher-system"
+        name="ignition::gazebo::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <publish_sensor_pose>false</publish_sensor_pose>
+        <publish_collision_pose>false</publish_collision_pose>
+        <publish_visual_pose>false</publish_visual_pose>
+        <publish_nested_model_pose>true</publish_nested_model_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>0</update_frequency>
+        <static_publisher>true</static_publisher>
+        <static_update_frequency>60</static_update_frequency> <!--10, 30-->
+      </plugin>
+
+    </model>
+
+</sdf>

@@ -1,0 +1,8 @@
+repos/PX4-Autopilot/
+ws_ros2/build/
+ws_ros2/install/
+ws_ros2/data/
+ws_ros2/log/
+ws_ros2/src/slung_pose_measurement/data_vault
+log/
+data/

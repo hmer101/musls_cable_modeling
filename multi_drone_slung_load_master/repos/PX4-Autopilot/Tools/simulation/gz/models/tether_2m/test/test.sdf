@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="universal_joint_world">
+    <gravity>0 0 -0</gravity>
+
+    <!-- Ground plane and light -->
+
+    <!-- Two-link model -->
+    <model name="two_links_universal">
+      <pose>0 0 0.5 0 0 0</pose>
+      <static>false</static>
+
+      <!-- First link -->
+      <link name="link1">
+        <pose>0 0 0.5 0 0 0</pose>
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <iyy>0.001</iyy>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.2</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.2</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+
+      <!-- Second link -->
+      <link name="link2">
+        <pose>0 0 0.3 0 0 0</pose>
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <iyy>0.001</iyy>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.2</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.2</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+
+      <!-- Universal joint connecting the links -->
+      <joint name="u_joint" type="universal">
+        <parent>link1</parent>
+        <child>link2</child>
+
+        <!-- First rotation axis (X axis in link1 frame) -->
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.01</damping>
+          </dynamics>
+        </axis>
+
+        <!-- Second rotation axis (Y axis in link2 frame) -->
+        <axis2>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.01</damping>
+          </dynamics>
+        </axis2>
+      </joint>
+    </model>
+  </world>
+</sdf>

@@ -1,0 +1,28 @@
+{
+    "name": "multi_drone_slung_load_master",
+
+    "build": {
+      "dockerfile": "Dockerfile",
+      "context": ".."
+    },
+    
+    "runArgs": [
+      "--privileged",
+      "--network=host",
+      "--env", "DISPLAY=${env:DISPLAY}",
+      "--volume=/tmp/.X11-unix:/tmp/.X11-unix",
+      "--volume=/var/run/docker.sock:/var/run/docker.sock"
+    ],
+    
+    "workspaceFolder": "/${localWorkspaceFolderBasename}",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/${localWorkspaceFolderBasename},type=bind",
+    
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-vscode-remote.remote-containers",
+          "ms-python.python"
+        ]
+      }
+    }
+}

@@ -1,0 +1,30 @@
+version: '2.1'
+
+services:
+  main:
+    build:
+      context: .
+      dockerfile: repos/drone_offboard_computer/Dockerfile
+    privileged: true  # Optional, if you need USB, network, etc.
+    network_mode: host  # Optional, if you need access to host networking
+
+
+# version: '2.1'
+
+# services:
+#   main:
+#     build:
+#       context: .
+#       dockerfile: repos/drone_offboard_computer/Dockerfile
+#     privileged: true
+#     network_mode: host
+#     volumes:
+#       - /:/host
+#       - /dev:/dev
+#       - /sys:/sys
+#       - /var/run/docker.sock:/var/run/docker.sock
+#       - /etc/hostname:/etc/hostname
+#       - /etc/hosts:/etc/hosts
+#       - /etc/resolv.conf:/etc/resolv.conf
+#     environment:
+#       - UDEV=1

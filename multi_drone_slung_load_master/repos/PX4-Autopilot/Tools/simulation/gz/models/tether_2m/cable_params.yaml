@@ -1,0 +1,31 @@
+# Cable properties
+cable_length: 2.4210 # m
+
+cable_mass: 0.02 # kg
+cable_radius: 0.0031 # m
+
+elem_length_ends: 0.0001 # m
+elem_mass_ends: 0.0001 # kg
+
+# Joint properties
+joint_1_axis: "0 1 0" # Axis of rotation for joint 1
+joint_2_axis: "0 0 1" # Axis of rotation for joint 2
+
+# Properties to tune
+num_elements: 15 #20 #25 #29
+
+joint_friction: 0 #0.00015 #0.0002 # N
+joint_damping:  0.002 # Ns/rad # Max step size for straight cable spawn with damping 0.005: 0.00199
+joint_stiffness: 0 # N/rad 
+#For straight cable: 0.0035 # Using max step size 0.0015: 0.005 - drones bounce up and over on spawn. 0.0045 (tugs a bit) - max that works on spawn. Also works: 0.0035 (max with no artifacts on spawn), 0.0025 and less (down to 0) # N/m
+joint_1_spring_reference: -0.10833078115 #0 # equilibrium position of spring. -pi/num_elements
+joint_2_spring_reference: 0
+
+
+# For the alternate joints
+joint_interval_k: 2 # e.g. 2 → every 2nd joint
+joint_offset: 1 # e.g. 2 → start from joint 2 (so 2,4,6,…)
+
+joint_k_friction: 0.0 #0.00015 #0.0002 # N
+joint_k_damping: 0.002 # Ns/rad
+joint_k_stiffness: 0 # N/rad
