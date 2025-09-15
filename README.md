@@ -1,37 +1,94 @@
 # musls_cable_modeling
-Code and data accompanying ICRA 2026 submission: Dynamics Modeling of a Multi-UAV Slung Load System Using a Discrete-Link Cable Approach
+Code and data accompanying **ICRA 2026 submission: _Dynamics Modeling of a Multi-UAV Slung Load System Using a Discrete-Link Cable Approach_**
 
-## Structure
+---
 
+## 📂 Repository Structure
+```text
+.
+├── LICENSE
+├── multi_drone_slung_load_master/     # Root folder for development container
+│   ├── data_and_processing/
+│   │   ├── data/                      # Custom logfiles + ROS2 bagfiles (real & simulated)
+│   │   └── src/                       # Code for processing data and generating plots
+│   ├── docker-compose.yml             # Docker container orchestration
+│   ├── repos/
+│   │   └── PX4-Autopilot/             # Custom PX4 simulation files
+│   ├── requirements.txt               # Python dependencies
+│   ├── run_qgc.sh                     # Script to run QGroundControl (if installed)
+│   └── setup.sh                       # Setup script (post-container creation)
+└── README.md
+```
 
-## How to use
+---
 
-1. Build and open the development container
-2. Inside the development container: run bash setup.sh to install all python requirements
+## 🚀 Getting Started
 
+1. **Build and start the development container**  
+   - Open the repo in VS Code (or your preferred environment) with DevContainers enabled.  
+   - Run `docker-compose up` if working directly with Docker.
 
-This repository contains the custom files and settings required to recreate the results seen in the paper. It also contains all simulated and real world data files and the corresponding code to process them to reproduce the graphics seen in the paper. 
+2. **Install dependencies inside the container**  
+   ```bash
+   bash setup.sh
+   ```
+   This installs all Python requirements from `requirements.txt`.
 
-- It does not contain the in-depth formation control implementation required to fly in simulation and the real world as this is not the main subject of this paper. To implement this, simply send waypoints to each of the three drones in the MUSLS using these instructions: https://docs.px4.io/main/en/ros2/offboard_control.
+3. **Verify the environment**  
+   - The Docker container includes all dependencies (ROS2, PX4 simulation setup, Python libraries) needed to reproduce results.  
+   - Optional: run `./run_qgc.sh` if you have QGroundControl installed locally.  
 
+---
 
-### Data files
-- The Dockerfile contains the whole environment you need to run and process the collected datafiles including all dependencies and python packages.
+## 📊 Data Files
 
-- Contains all of the custom logfiles generated from simulated and real world flights.
-- Contains all of the rosbag files from real world flights, containing all TFs of the load and drones respectively. To use the rosbag files, first extract the .zip folders containing the files, then play the .db3 files with rosbag play.
-- process_results.py is the main file to follow to process custom logfiles and produce the corresponding graphs. It contains metadata about all custom datafiles stored in this repository.
+This repository includes **all simulated and real-world data files** used in the paper:
 
+- **Custom logfiles** (from simulated and real flights).  
+- **ROS2 bagfiles (.db3)** containing TFs of the load and drones.  
+  - First, unzip the provided archives.  
+  - Play a bagfile with:  
+    ```bash
+    ros2 bag play filename.db3
+    ```
 
-### Simulation setup
-- This repo contains the world and model files required to simulate the MUSLS as in the paper. To recreate the simulation, follow the instructions here (for Gazebo): https://docs.px4.io/main/en/simulation/.
+### Processing the data
+- Use **`process_results.py`** (in `data_and_processing/src/`) as the main entry point.  
+- This script:  
+  1. Loads metadata about all datasets.  
+  2. Processes logfiles and bagfiles.  
+  3. Generates plots and figures corresponding to the paper.  
 
-To use the MUSLS files:
-- Install PX4 autopilot inside the Docker container
-- Copy all files from multi_drone_slung_load_master/repos/PX4-Autopilot into their corresponding locations in the installed PX4 instance
-- Run the simulation with the multi_rigid_link_2m.sdf world
+---
 
-- To change the properties of the cable, edit cable_params.yaml, then run update_all.py
+## 🛠️ Simulation Setup
 
+This repo also provides the world and model files needed to simulate the Multi-UAV Slung Load System (MUSLS):
 
+1. **Install PX4 Autopilot** inside the Docker container.  
+2. **Copy the custom PX4 files** from:  
+   ```
+   multi_drone_slung_load_master/repos/PX4-Autopilot
+   ```  
+   into the corresponding directories of your PX4 installation.  
+3. **Run the simulation** using Gazebo with the provided world file:  
+   ```
+   multi_rigid_link_2m.sdf
+   ```
+4. **Modify cable properties** if needed:  
+   - Edit `cable_params.yaml`  
+   - Run `update_all.py` to apply changes.  
+
+For more details on running PX4 with ROS2 offboard control, see the [PX4 Offboard Control Guide](https://docs.px4.io/main/en/ros2/offboard_control/).
+
+---
+
+## 📌 Notes
+
+- This repository **does not** include the full formation control implementation required for real-world/simulated flights (not the focus of this paper).  
+- To fly a formation, simply send waypoints to each drone in the MUSLS using PX4’s standard offboard control API.  
+- The provided container + scripts are enough to:  
+  - Reproduce the figures in the paper.  
+  - Replay real and simulated data.  
+  - Run MUSLS simulations with customizable cable parameters.  
 
