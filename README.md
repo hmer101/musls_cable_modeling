@@ -26,7 +26,7 @@ Code and data accompanying **ICRA 2026 submission: _Dynamics Modeling of a Multi
 
 1. **Build and start the development container**  
    - Open the repo in VS Code (or your preferred environment) with DevContainers enabled.  
-   - Run `docker-compose up` if working directly with Docker.
+   - cntrl + shift + p to open the command palette in VS code, then type 'rebuild and reopen in devcontainer'.
 
 2. **Install dependencies inside the container**  
    ```bash
