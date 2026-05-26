@@ -1,6 +1,12 @@
 # musls_cable_modeling
 Code and data accompanying **ICRA 2026 submission: _Dynamics Modeling of a Multi-UAV Slung Load System Using a Discrete-Link Cable Approach_**
 
+If you use this code in a research setting, please cite:
+
+ADD BIBTEX CITATION HERE
+
+The repository that contains the full flight code to generate this data can be found [here](https://github.com/hmer101/multi_drone_slung_load_master/tree/main).
+
 ---
 
 ## 📂 Repository Structure
@@ -85,11 +91,11 @@ For more details on running PX4 with ROS2 offboard control, see the [PX4 Offboar
 
 ## 📌 Notes
 
-- This repository **does not** include the full formation control implementation required for real-world/simulated flights (not the main focus of this paper).  
-- To execute formation control, simply send waypoints to each drone in the MUSLS using PX4’s standard offboard control API.  
+- This repository **does not** include the full formation control implementation required for real-world/simulated flights (not the main focus of this paper). That code can be found in [this open-source repository](https://github.com/hmer101/multi_drone_slung_load_master/tree/main).  
+- To execute formation control, simply send position waypoints to each drone in the MUSLS using PX4’s standard offboard control API.  
 - The provided container + scripts are enough to:  
   - Reproduce the figures and results in the paper.  
   - Replay real flight data.  
-  - Reproduce MUSLS simulations (providing formation control is implemented as described) as all customizable cable parameters are provided.  
+  - Reproduce MUSLS simulations (providing formation control is implemented as described) as all customizable cable parameters are provided.
 
 
