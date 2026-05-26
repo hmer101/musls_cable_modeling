@@ -1,11 +1,13 @@
 # musls_cable_modeling
 Code and data accompanying **ICRA 2026 submission: _Dynamics Modeling of a Multi-UAV Slung Load System Using a Discrete-Link Cable Approach_**
 
+![flights](https://github.com/hmer101/musls_cable_modeling/blob/main/gif_mocap_flights.gif)
+
 If you use this code in a research setting, please cite:
 
 ADD BIBTEX CITATION HERE
 
-The repository that contains the full flight code to generate this data can be found [here](https://github.com/hmer101/multi_drone_slung_load_master/tree/main).
+The repository that contains the full flight code to generate this data can be found [here](https://github.com/hmer101/multi_drone_slung_load_master/tree/main), while the ICRA 2026 accompanying overview video can be found [here](https://www.youtube.com/watch?v=VATTPYYDwYY).
 
 ---
 
