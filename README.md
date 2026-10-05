@@ -5,7 +5,14 @@ Code and data accompanying **ICRA 2026 submission: _Dynamics Modeling of a Multi
 
 If you use this code in a research setting, please cite:
 
-ADD BIBTEX CITATION HERE
+@inproceedings{merton2026dynamics,
+  title={Dynamics Modeling of a Multi-UAV Slung Load System Using a Discrete-Link Cable Approach},
+  author={Merton, Harvey and Hunter, Ian W},
+  booktitle={2026 IEEE International Conference on Robotics and Automation (ICRA)},
+  pages={15757--15764},
+  year={2026},
+  organization={IEEE}
+}
 
 The repository that contains the full flight code to generate this data can be found [here](https://github.com/hmer101/multi_drone_slung_load_master/tree/main), while the ICRA 2026 accompanying overview video can be found [here](https://www.youtube.com/watch?v=VATTPYYDwYY).
 
